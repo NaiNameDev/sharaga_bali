@@ -78,6 +78,32 @@ public:
 	float get_delta() {
 		if (size == 2) return (mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]);
 
+		std::vector<sq_matrix> mat_arr;
+		for (int mc = 0; mc < size; mc++) {
+			sq_matrix tmp;
+			tmp.size = size - 1;
+			for (int i = 1; i < size; i++) {
+				tmp.mat.push_back({});
+				for (int j = 0; j < size; j++) {
+					if (j != mc) {
+						tmp.mat[i - 1].push_back(mat[i][j]);
+					}
+				}
+			}
+			mat_arr.push_back(tmp);
+		}
+		
+		float ret = 0;
+		for (int i = 0; i < size; i++) {
+			ret += (mat[0][i] * (std::pow(-1, 2 + i))) * mat_arr[i].get_delta();
+		}
+
+		return ret;
+	}
+/*    old one
+	float get_delta() {
+		if (size == 2) return (mat[0][0] * mat[1][1]) - (mat[0][1] * mat[1][0]);
+		
 		float part_one = 0;
 		for (int i = 0; i < size; i++) {
 			float tmp = 1;
@@ -95,9 +121,9 @@ public:
 			}
 			part_two += tmp;
 		}
-
 		return part_one - part_two;
 	}
+*/
 	float get_indexed_delta(int index, col_matrix col) {
 		return replace_col(index, col).get_delta();
 	}
