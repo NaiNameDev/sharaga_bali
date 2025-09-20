@@ -10,6 +10,11 @@ int main() {
 	col_matrix col;
 	col.init(main_mat.size);
 
+	if (main_mat.size < 2) {
+		std::cout << "matrix size need to be higher then 2, sorry mate" << std::endl;
+		exit(0);
+	}
+
 	std::cout << "\n\nINFO: " <<std::endl;
 
 	//equalation form
