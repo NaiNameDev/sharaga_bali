@@ -56,7 +56,7 @@ public:
 			std::cout << "{ ";
 			for (int j = 0; j < size; j++) {
 				if(mat[i][j] >= 0 && j != 0) std::cout << "+ ";
-				std::cout << mat[i][j] << "*" << "v" << i << " ";
+				std::cout << mat[i][j] << "*" << "v" << j << " ";
 			}
 			std::cout << "= " << col.mat[i];
 			std::cout << '\n';
